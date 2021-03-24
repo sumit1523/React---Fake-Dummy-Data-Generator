@@ -122,7 +122,7 @@ const Form = (props) => {
 					aria-describedby="my-helper-text"
 				/>
 			</Paper>
-			<Button disabled={numberOfData == 0} variant="contained" color="secondary" onClick={generateData}>{'Generate'}</Button>
+			<Button variant="contained" color="secondary" onClick={generateData}>{'Generate'}</Button>
 		</>
 	);
 };
