@@ -6,7 +6,7 @@ import {
 	FormControl,
 	InputLabel,
 	Select,
-	TextField,
+	Input,
 	Chip,
 	MenuItem,
 	Button,
@@ -19,6 +19,13 @@ import download from "downloadjs";
 const categories = Object.keys(options);
 
 const useStyles = makeStyles((theme) => ({
+	heading: {
+		justifyContent: 'center',
+		display: 'flex',
+		fontSize: 'xxx-large',
+		color: 'wheat',
+		padding: '25px'
+	},
 	formControl: {
 		minWidth: "100%",
 	},
@@ -61,15 +68,16 @@ const Form = (props) => {
 			copyData = JSON.parse(JSON.stringify(options));
 		}
 
-		download(JSON.stringify(arrData), "fake_data.json", "json");
+		download(JSON.stringify(arrData), "dummy_data.json", "json");
 		setNumberOfData(1);
 		setData(dataTemplate);
 	};
 	return (
 		<>
+			<div className={classes.heading}>{"Dummy Data Generater"}</div>
 			<Grid container spacing={2}>
 				{categories.map((category) => (
-					<Grid item sm={3} key={category}>
+					<Grid item xs={12} sm={4} md={3} key={category}>
 						<Paper component={Box} p={3}>
 							<FormControl className={classes.formControl}>
 								<InputLabel>{category}</InputLabel>
@@ -103,16 +111,18 @@ const Form = (props) => {
 				))}
 			</Grid>
 			<Paper component={Box} my={1} p={3}>
-				<TextField
+				<InputLabel htmlFor="my-input">{'Number of dummy data'}</InputLabel>
+				<Input
+					id="my-input"
 					fullWidth
-					variant="outlined"
-					label="Enter the number of dummy data"
 					placeholder="Enter the number"
 					value={numberOfData}
+					type="number"
 					onChange={(e) => setNumberOfData(e.target.value)}
+					aria-describedby="my-helper-text"
 				/>
 			</Paper>
-			<Button disabled={numberOfData.length <= 0} variant="contained" color="secondary" onClick={generateData}>{'Generate'}</Button>
+			<Button disabled={numberOfData == 0} variant="contained" color="secondary" onClick={generateData}>{'Generate'}</Button>
 		</>
 	);
 };

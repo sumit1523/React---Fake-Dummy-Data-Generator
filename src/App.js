@@ -1,11 +1,11 @@
 import "./styles/App.css";
 import { Container } from "@material-ui/core";
-import Form from "./Form";
+import DataGenerater from "./DataGenerater";
 
 function App() {
   return (
     <Container>
-      <Form />
+      <DataGenerater />
     </Container>
   );
 }
